@@ -6,7 +6,7 @@ Frontend, Kubernetes containerized app build with Flask as runtime (listening on
 
 After creating a resource group in Azure (NetworkWatcherRg)  based on East US initially, we can create more to be able to countabilize costs based on GEOs for example (AMR, LATAM, APAC, EMEA)
 
-Run this using embedded Powershell ==> ``az aks create --resource-group NetworkWatcherRg --name KSClusterPOC --node-count 1 --enable-addons monitoring --generate-ssh-keys``
+Run all these commands using embedded Powershell in Azure Portal  ==> ``az aks create --resource-group NetworkWatcherRg --name KSClusterPOC --node-count 1 --enable-addons monitoring --generate-ssh-keys``
 
 Then install the Kubernetes client application *kubectl* (allows you to interact with the cluster and deploy apps)
 
@@ -17,3 +17,6 @@ Then, for security purposes & and as requirement for Kubernetes Azure instance, 
 
 ``az aks get-credentials --resource-group NetworkWatcherRg --name myAKSCluster``
 
+Now one simple way to lookup whether the Kubernetes (server side) is up and running by checking if at least it has 1 node UP
+
+``kubectl get nodes```
