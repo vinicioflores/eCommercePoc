@@ -46,4 +46,5 @@ Now in order to implement CI/CD pipeline (in this case I'm choosing canary relea
 Compile the image  (in same location in which the Dockerfile is cloned)  ==> ``Get-Content Dockerfile | docker build -``
 Push to the registry ==> ``docker push myregistry.azurecr.io/samples/hello-world``
 
-4) 
+4) Re-deploy app again this time referencing *deployment.yaml* as usual
+``kubectl apply -f deployment.yaml``
