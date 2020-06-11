@@ -8,8 +8,12 @@ After creating a resource group in Azure (NetworkWatcherRg)  based on East US in
 
 Run this using embedded Powershell ==> ``az aks create --resource-group NetworkWatcherRg --name KSClusterPOC --node-count 1 --enable-addons monitoring --generate-ssh-keys``
 
-Then install the Kubernetes client application (allows you to interact with the cluster and deploy apps)
+Then install the Kubernetes client application *kubectl* (allows you to interact with the cluster and deploy apps)
 
 ``az aks install-cli``
 
+
+Then, for security purposes & and as requirement for Kubernetes Azure instance, credentials need to be stored:
+
+``az aks get-credentials --resource-group NetworkWatcherRg --name myAKSCluster``
 
