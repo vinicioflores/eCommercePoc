@@ -19,4 +19,7 @@ Then, for security purposes & and as requirement for Kubernetes Azure instance, 
 
 Now one simple way to lookup whether the Kubernetes (server side) is up and running by checking if at least it has 1 node UP
 
-``kubectl get nodes```
+``kubectl get nodes``
+
+If there's a node and cluster is up, the proceed to deploy via *kubectl* and provide your YAML file
+``kubectl apply -f deployment.yaml``
