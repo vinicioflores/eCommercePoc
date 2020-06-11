@@ -8,7 +8,7 @@ After creating a resource group in Azure (NetworkWatcherRg)  based on East US in
 
 Run all these commands using embedded Powershell in Azure Portal  ==> ``az aks create --resource-group NetworkWatcherRg --name KSClusterPOC --node-count 1 --enable-addons monitoring --generate-ssh-keys``
 
-Then install the Kubernetes client application *kubectl* (allows you to interact with the cluster and deploy apps)
+Then install the Kubernetes client application *kubectl* as well *helm* package manager that will be useful for us to provision monitoring and CI/CD tools in the future (allows you to interact with the cluster and deploy apps)
 
 ``az aks install-cli``
 
