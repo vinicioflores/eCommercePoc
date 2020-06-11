@@ -31,5 +31,19 @@ Let's install prometeus as our (proactive monitoring tool to collect defautl sta
 
 ``helm install --name sampleapp stable/prometheus-operator``
 
+Now in order to implement CI/CD pipeline (in this case I'm choosing canary release strategy thinking that in the future we may have many  different microservices not only the HELLO one )
 
 
+1) First need to create a login for my Private Registry of docker images
+``az acr login --name myregistry.azurecr.io``
+
+
+2) Then login to Azure Private Image registry:
+``docker login myregistry.azurecr.io ``
+
+3) Now let's push our Flask application (image generated with Dockerfile) into our private registry
+
+Compile the image  (in same location in which the Dockerfile is cloned)  ==> ``Get-Content Dockerfile | docker build -``
+Push to the registry ==> ``docker push myregistry.azurecr.io/samples/hello-world``
+
+4) 
