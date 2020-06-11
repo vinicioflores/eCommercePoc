@@ -1,33 +1,25 @@
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello-python-service
-spec:
-  selector:
-    app: hello-python
-  ports:
-  - protocol: "TCP"
-    port: 6000
-    targetPort: 8080
-  type: LoadBalancer
-
-
----
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-python
+  name: hello-world
+  labels:
+    app: hello-world
 spec:
   replicas: 4
+  selector:
+    matchLabels:
+      app: hello-world
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
       labels:
-        app: hello-python
+        app: hello-world
     spec:
       containers:
-      - name: hello-python
-        image: hello-python:latest
-        imagePullPolicy: Never
+      - name: hello-world
+        image: myregistry.azurecr.io/azure-pipelines-canary-k8s
+        imagePullPolicy: Always
         ports:
+        - containerPort: 8080
         - containerPort: 8080
