@@ -22,4 +22,14 @@ Now one simple way to lookup whether the Kubernetes (server side) is up and runn
 ``kubectl get nodes``
 
 If there's a node and cluster is up, the proceed to deploy via *kubectl* and provide your YAML file
+
 ``kubectl apply -f deployment.yaml``
+
+Now as architects we need to ensure that we have a single centralized place where app's logs arrive so it's easier to maintain in the longer term and easier for developers to debug.
+
+Let's install prometeus as our (proactive monitoring tool to collect defautl stats such as I/O, network latency, etc. ) as well as Grafana to display all that visually. Grafana is already bundled together with Prometheus.
+
+``helm install --name sampleapp stable/prometheus-operator``
+
+
+
