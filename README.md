@@ -1,21 +1,41 @@
 # Hello-World
-Frontend, Kubernetes containerized app build with Flask as runtime (listening on 8080 port as default HTTP REST API standards) . Includes ARM template to deploy via Azure Portal.
+Frontend, Kubernetes containerized app build with Flask as runtime (listening on 8080 port as default HTTP REST API standards).
 
 
-``az group create --name NetworkWatcherRg --location eastus``
 
-After creating a resource group in Azure (NetworkWatcherRg)  based on East US initially, we can create more to be able to countabilize costs based on GEOs for example (AMR, LATAM, APAC, EMEA)
+1) Install IBMCloud CLI client.
+[Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"; iex(New-Object Net.WebClient).DownloadString('https://ibm.biz/idt-win-installer')
 
-Run all these commands using embedded Powershell in Azure Portal  ==> ``az aks create --resource-group NetworkWatcherRg --name KSClusterPOC --node-count 1 --enable-addons monitoring --generate-ssh-keys``
-
-Then install the Kubernetes client application *kubectl* as well *helm* package manager that will be useful for us to provision monitoring and CI/CD tools in the future (allows you to interact with the cluster and deploy apps)
-
-``az aks install-cli``
+2) Install container registry plugin
+``ibmcloud plugin install container-registry -r "IBM Cloud"``
 
 
-Then, for security purposes & and as requirement for Kubernetes Azure instance, credentials need to be stored:
+3) Login into IBM Cloud - you will be prompted to provide the email and password you set at registration time. Also you choose the region (8 - default)
+``ibmcloud login``
 
-``az aks get-credentials --resource-group NetworkWatcherRg --name myAKSCluster``
+4) A resource group is automatically granted in the free account (email@domain.com/dev)
+
+5) In your account payment methods, in WEB UI , provide a Credit Card. This will allow you to create a Free (1 month / $200 credit) Kubernetes cluster. Nothing will be charged unless you exceed the credit.
+
+6) Build a Free Kubernetes cluster (1 node 4 ram 2 cores)
+``ibmcloud ks create classic --name Hello-IBM-Cloud-Dev-VF --version 1.17.6``
+
+7) Create a namespace in IBM Container Registry so we can push docker images there.
+``ibmcloud cr namespace-add <my_preferred_namespace>``
+
+
+8) Go to *config* folder and build the docker image
+``docker build - < Dockerfile``
+
+9) Tag the image according to IBM Container Registry API base URL
+``docker tag hello-world us.icr.io/<my_namespace>/<my_new_repository>:<my_tag>``
+
+
+10) Push the image thru IBM Container Registry API
+``docker push us.icr.io/<my_namespace>/<my_repository>:<my_tag>``
+
+11) Check the image was added in there:
+``ibmcloud cr image-list``
 
 Now one simple way to lookup whether the Kubernetes (server side) is up and running by checking if at least it has 1 node UP
 

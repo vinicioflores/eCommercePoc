@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+  labels:
+    app: hello-world
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: /azure-pipelines-canary-k8s
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        - containerPort: 8080
