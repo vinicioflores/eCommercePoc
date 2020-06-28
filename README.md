@@ -53,17 +53,12 @@ Let's install prometeus as our (proactive monitoring tool to collect defautl sta
 
 Now in order to implement CI/CD pipeline (in this case I'm choosing canary release strategy thinking that in the future we may have many  different microservices not only the HELLO one )
 
+### CHANGELOG:
 
-1) First need to create a login for my Private Registry of docker images
-``az acr login --name myregistry.azurecr.io``
+I've decided to start a POC of a personal use case I want to implement thru IBM Cloud as preferred cloud provider. 
 
+The Use Case is an eCommerge app that behaves very similarly to this Japanese, Tokyo-based store: [Don Quijote](https://www.donki.com/en/ "Don Quijote's Discount Store") basically it works by having a huge catalog of products (here stored in a GeoReplicated MySQL DB farm ) that they initially put by pure "Guess" in the front-door of their physical stores. Then they do "backtracking algorithm" by tracing which products sell the most and which doesn't. The ones that don't sell are put back inside the store and the ones that sell better are put up-front where everyone can see.
 
-2) Then login to Azure Private Image registry:
-``docker login myregistry.azurecr.io ``
+It's a POC thus here's the architecture diagram (I've just modified the Docker YAMLs to summon up the MySQL DBs as well)
 
-3) Now let's push our Flask application (image generated with Dockerfile) into our private registry
-
-Compile the image  (in same location in which the Dockerfile is cloned)  ==> ``Get-Content Dockerfile | docker build -``
-Push to the registry ==> ``docker push myregistry.azurecr.io/samples/hello-world``
-
-4) 
+![Architecture Blueprint](https://github.com/vinicioflores/Hello-World/blob/master/src/eComm.png "Architecture Blueprint")
