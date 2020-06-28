@@ -61,4 +61,11 @@ The Use Case is an eCommerge app that behaves very similarly to this Japanese, T
 
 It's a POC thus here's the architecture diagram (I've just modified the Docker YAMLs to summon up the MySQL DBs as well)
 
-![Architecture Blueprint](https://github.com/vinicioflores/Hello-World/blob/master/src/eComm.png "Architecture Blueprint")
+![Architecture Blueprint, Coordination Model](https://github.com/vinicioflores/Hello-World/blob/master/src/eComm.png "Architecture Blueprint - Coordination Model")
+
+
+The core data model inside the MySQL DBs (it should be relational and properly normalized) would look something like this:
+
+![Core data model - data tier](https://github.com/vinicioflores/Hello-World/blob/master/src/CrawFootNotationDBs_eComm.png "Data Architecture")
+
+
