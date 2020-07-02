@@ -5,7 +5,7 @@ Frontend, Kubernetes containerized app build with Flask as runtime (listening on
 
 
 1) Install IBMCloud CLI client.
-[Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"; iex(New-Object Net.WebClient).DownloadString('https://ibm.biz/idt-win-installer')
+``[Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"; iex(New-Object Net.WebClient).DownloadString('https://ibm.biz/idt-win-installer')``
 
 2) Install container registry plugin
 ``ibmcloud plugin install container-registry -r "IBM Cloud"``
