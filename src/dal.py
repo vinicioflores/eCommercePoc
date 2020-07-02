@@ -14,7 +14,8 @@ class DalHelper:
 	def Select (self, tablename):
 		dataReader = self.ConnectorDb.cursor()
 		dataReader.execute("SELECT * FROM " + str(tablename))
-		
+		return dataReader.fetchall()
+
 	
 		
 	
