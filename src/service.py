@@ -18,5 +18,5 @@ class AbstractService(ABC):
 		pass
 		
 		
-	def handle(self):
+	def handle(self, ch, method, properties, body):
 		pass
