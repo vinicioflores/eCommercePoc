@@ -1,1 +1,5 @@
-Flask
+Flask==1.1.1
+Flask-Cors==3.0.8
+flask-migrate==2.5.2
+mysql-connector-python
+pika==1.1.0
