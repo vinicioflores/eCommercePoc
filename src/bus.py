@@ -25,11 +25,21 @@ class Bus:
 	def EnqueueMessage(self, queueName, message):
 		self.busQueues[queueName].basic_publish(exchange='', routing_key=queueName, body=message)
 		
+	def SubscribeQueue(self, queueName, callback):
+		self.busQueues[queueName].basic_consume(queueName, callback, auto_ack=True)
+		
+	def StreamQueue(self, queueName):
+		self.busQueues[queueName].start_consuming()
+		return self.busQueues[queueName]
+	
 	def StartBusProtocol(self):
 		self.busConnection=pika.BlockingConnection(self.busParams) # connect to RabbitMQ
 		AddQueue(self, 'products')
 		AddQueue(self, 'inventory')
 		AddQueue(self, 'suppliers')
+		
+	def StopBusProtocol(self):
+		self.busConnection.close()
 		
 
 
