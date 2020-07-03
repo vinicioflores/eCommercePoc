@@ -34,7 +34,7 @@ class Bus:
 	
 	def StartBusProtocol(self):
 		self.busConnection=pika.BlockingConnection(self.busParams) # connect to RabbitMQ
-		AddQueue(self, 'products')
+		AddQueue(self, 'product')
 		AddQueue(self, 'inventory')
 		AddQueue(self, 'suppliers')
 		

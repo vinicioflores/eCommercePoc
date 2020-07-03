@@ -11,8 +11,12 @@ class ProductService(AbstractService):
 	
 	# override configure and start service calls
 	
+	
 	def handle(self, ch, method, properties, body):
+		purchaseConfirmation = { 'status': 'Success' }
 		print("Handling purchase" + base64.b64decode(gzip.decompress(str(body))))
+		
+		return jsonify(purchaseConfirmation)
 	
 	def configure(self):
 		bus.SubscribeQueue('product', handle)
